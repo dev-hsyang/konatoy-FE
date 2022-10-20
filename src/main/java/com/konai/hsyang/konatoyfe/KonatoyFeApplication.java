@@ -52,32 +52,42 @@ public class KonatoyFeApplication {
 			// subscribe를 해야 실제 데이터가 흐르기 시작한다.
 
 
-			System.out.println("********************* MONO: STREAM에 있는 데이터묶음을 처리한다. ************************");
+			//System.out.println("********************* MONO: STREAM에 있는 데이터묶음을 처리한다. ************************");
 			// 각각 다른 stream이다. 먼저 응답이 오는순으로 결과가 sout 된다.
 			// mono.doOnSuccess: stream에 있는 mono(데이터묶음)에 접근
 			reposMono.doOnSuccess(ra -> {
 				Arrays.stream(ra).forEach(r -> {
-					System.out.println("repo: " + r.getUrl());
+					System.out.println("[MONO]repo: " + r.getUrl());
 				});
 			}).subscribe(); // subscribe를 하여 data flow가 이루어지게 한다.
 
 			// 각각 다른 stream. 비동기식이다 async하다. non-blocking하다.
 			commitsMono.doOnSuccess(ca -> {
 				Arrays.stream(ca).forEach(c -> {
-					System.out.println("commit: " + c.getSha());
+					System.out.println("[MONO]commit: " + c.getSha());
 				});
 			}).subscribe();
 
 
-			System.out.println("*********************** FLUX: STREAM에 있는 데이터에 하나씩 접근한다. *************************");
+			//System.out.println("*********************** FLUX: STREAM에 있는 데이터에 하나씩 접근한다. *************************");
 			// flux.doOnNext: stream에 들어있는 개별데이터에 하나씩 접근.
 			reposFlux.doOnNext(r -> {
-				System.out.println("repo: " + r.getUrl());
+				System.out.println("[FLUX]repo: " + r.getUrl());
 			}).subscribe(); // subscribe해줘야 data가 흐른다.
 
 			commitsFlux.doOnNext(c -> {
-				System.out.println("commit: " + c.getSha());
+				System.out.println("[FLUX]commit: " + c.getSha());
 			}).subscribe();
+
+
+			// subscribe: .subscribe() 하는 순간 데이터 한건당 씩 지나가게 된다.
+			reposFlux.subscribe(r -> {
+				System.out.println("[SUBSCRIBE]repo: " + r.getUrl());
+			});
+
+			commitsFlux.subscribe(c -> {
+				System.out.println("[SUBSCRIBE]commit: " + c.getSha());
+			});
 
 
 			stopWatch.stop();
