@@ -23,7 +23,12 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
 	implementation 'org.projectreactor:reactor-spring:1.0.1.RELEASE'
 
+	// LomBok
+	implementation 'org.projectlombok:lombok:1.18.8'
 	annotationProcessor 'org.projectlombok:lombok'
+	implementation 'org.slf4j:slf4j-api:1.7.26'
+	implementation 'org.slf4j:slf4j-simple:1.7.26'
+
 }
 
 tasks.named('test') {
