@@ -1,5 +1,6 @@
 package com.konai.hsyang.konatoyfe.postWebClient.dto;
 
+import com.konai.hsyang.konatoyfe.loginWebClient.domain.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -15,10 +16,10 @@ public class PostsResponseDto {
 
     private Long postID;
     private User user;
-    private Location location;
+//    private Location location;
     private String club;
-    private List<CommentsResponseDto> comments;
-    private List<FileResponseDto> files;
+//    private List<CommentsResponseDto> comments;
+//    private List<FileResponseDto> files;
     private String title;
     private String content;
     private Long hits;

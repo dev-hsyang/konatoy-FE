@@ -2,24 +2,43 @@ package com.konai.hsyang.konatoyfe.postWebClient.service;
 
 import com.konai.hsyang.konatoyfe.postWebClient.dto.PostsResponseDto;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.reactive.function.client.WebClientResponseException;
 
 import java.util.List;
 
-import static com.konai.hsyang.konatoyfe.postWebClient.constant.UriConstant.GET_POSTS;
+import static com.konai.hsyang.konatoyfe.postWebClient.constant.UriConstant.GET_POSTS_BY_ID;
 
+@Slf4j
 @RequiredArgsConstructor
 public class PostWebClient {
 
-    final WebClient.Builder webClientBuild;
-    WebClient webClient = webClientBuild.baseUrl("http://localhost:8080").build();
+    private final WebClient webClient;
 
-    public List<PostsResponseDto> retrievePosts(){
+//    public List<PostsResponseDto> retrievePosts(){
+//
+//        return webClient.get().uri(GET_POSTS_BY_ID)
+//                .retrieve()
+//                .bodyToFlux(PostsResponseDto.class)
+//                .collectList()
+//                .block();
+//    }
 
-        return webClient.get().uri(GET_POSTS)
+    public PostsResponseDto retrievePostsById(int postsID){
+
+        try {
+        return webClient.get().uri(GET_POSTS_BY_ID, postsID)
                 .retrieve()
-                .bodyToFlux(PostsResponseDto.class)
-                .collectList()
+                .bodyToMono(PostsResponseDto.class)
                 .block();
+        }catch (WebClientResponseException e){
+            log.error("Error Response Code is {} and the response body is {}", e.getRawStatusCode(), e.getResponseBodyAsString());
+            log.error("WebClientResponseException in retrievePostsById", e);
+            throw e;
+        }catch (Exception e){
+            log.error("Exception in retrievePostsById", e);
+            throw e;
+        }
     }
 }
