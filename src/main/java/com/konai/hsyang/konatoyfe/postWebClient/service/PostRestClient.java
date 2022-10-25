@@ -43,10 +43,19 @@ public class PostRestClient {
 
     public Long updatePosts(int postsID, PostsUpdateRequestDto requestDto){
 
-        return webClient.post().uri(POSTS_UPDATE_BY_ID, postsID)
-                .syncBody(requestDto)
-                .retrieve()
-                .bodyToMono(Long.class)
-                .block();
+        try {
+            return webClient.post().uri(POSTS_UPDATE_BY_ID, postsID)
+                    .syncBody(requestDto)
+                    .retrieve()
+                    .bodyToMono(Long.class)
+                    .block();
+        } catch (WebClientResponseException e){
+            log.error("Error Response Code is {} and the response body is {}", e.getRawStatusCode(), e.getResponseBodyAsString());
+            log.error("WebClientResponseException is addNewEmployee", e);
+            throw e;
+        } catch (Exception e){
+            log.error("Exception in addNewEmployee", e);
+            throw e;
+        }
     }
 }

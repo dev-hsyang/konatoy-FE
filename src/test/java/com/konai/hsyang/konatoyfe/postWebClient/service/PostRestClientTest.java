@@ -5,6 +5,7 @@ import com.konai.hsyang.konatoyfe.postWebClient.dto.PostsUpdateRequestDto;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
 
@@ -42,15 +43,25 @@ public class PostRestClientTest {
     }
 
     @DisplayName("PostsID로 Post 수정하기 테스트")
+    @Transactional
     @Test
     void updatePostsTest(){
 
-        PostsUpdateRequestDto requestDto = new PostsUpdateRequestDto(null, 1L, "수정 테스트 타이틀", "수정 테스트 본문", 37, 127);
+        PostsUpdateRequestDto requestDto = new PostsUpdateRequestDto(null, 1L, "수정 테스트 타이틀2", "수정 테스트 본문2", 37, 127);
 
         Long postsID = postRestClient.updatePosts(75, requestDto);
 
         assertThat(postsID).isEqualTo(75);
-        assertThat(postRestClient.retrievePostsById(75).getContent()).isEqualTo("수정 테스트 본문");
+        assertThat(postRestClient.retrievePostsById(75).getContent()).isEqualTo("수정 테스트 본문2");
     }
 
+    @DisplayName("PostsID로 Post 수정하기 실패 테스트")
+    @Transactional
+    @Test
+    void updatePostsTest_BadRequest(){
+
+        PostsUpdateRequestDto requestDto = new PostsUpdateRequestDto(null, null, "수정 테스트 타이틀1", "수정 테스트 본문1", 37, 127);
+
+        Assertions.assertThrows(WebClientResponseException.class, ()-> postRestClient.updatePosts(75, requestDto));
+    }
 }
