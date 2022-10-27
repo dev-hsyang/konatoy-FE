@@ -1,9 +1,12 @@
 package com.konai.hsyang.konatoyfe.postWebClient.service;
 
+import com.konai.hsyang.konatoyfe.postWebClient.dto.PostsImageResponseDto;
+import com.konai.hsyang.konatoyfe.postWebClient.dto.PostsListResponseDto;
 import com.konai.hsyang.konatoyfe.postWebClient.dto.PostsResponseDto;
 import com.konai.hsyang.konatoyfe.postWebClient.dto.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
 
@@ -75,4 +78,29 @@ public class PostRestClient {
             throw e;
         }
     }
+
+    public PostsImageResponseDto saveImage(MultipartFile multipartFile){
+
+        try {
+            return webClient.post().uri(uriBuilder -> uriBuilder
+                            .path(POSTS_UPLOAD_IMAGE)
+                            .queryParam("image", multipartFile)
+                            .build())
+                    .retrieve()
+                    .bodyToMono(PostsImageResponseDto.class)
+                    .block();
+        } catch (WebClientResponseException e){
+            log.error("Error Response Code is {} and the response body is {}", e.getStatusCode(), e.getResponseBodyAsString());
+            log.error("WebClientResponseException in saveImage", e);
+            throw e;
+        } catch (Exception e){
+            log.error("Exception id saveImage", e);
+            throw e;
+        }
+
+    }
+
+    // Page 받아오기
+    // @AuthenticationPrincipal parameter 해결하기
+
 }
