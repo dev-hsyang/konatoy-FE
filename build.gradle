@@ -30,9 +30,17 @@ dependencies {
 	implementation 'org.slf4j:slf4j-api:1.7.26'
 	//implementation 'org.slf4j:slf4j-simple:1.7.26'
 
+	// test
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
 	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.6.0'
+
+	// redis
+	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+	implementation 'org.springframework.session:spring-session-data-redis'
+
+	// spring security
+	implementation 'org.springframework.boot:spring-boot-starter-security'
 
 }
 

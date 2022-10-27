@@ -1,7 +1,6 @@
 package com.konai.hsyang.konatoyfe.postWebClient.service;
 
 import com.konai.hsyang.konatoyfe.postWebClient.dto.PostsImageResponseDto;
-import com.konai.hsyang.konatoyfe.postWebClient.dto.PostsListResponseDto;
 import com.konai.hsyang.konatoyfe.postWebClient.dto.PostsResponseDto;
 import com.konai.hsyang.konatoyfe.postWebClient.dto.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +13,7 @@ import static com.konai.hsyang.konatoyfe.postWebClient.constant.UriConstant.*;
 
 @Slf4j
 @RequiredArgsConstructor
-public class PostRestClient {
+public class PostsRestClientService {
 
     private final WebClient webClient;
 

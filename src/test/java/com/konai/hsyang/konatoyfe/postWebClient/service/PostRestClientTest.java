@@ -17,7 +17,7 @@ public class PostRestClientTest {
     private WebClient webClient = WebClient.create(BASE_URL);
 //    private WebClient.Builder webClientBuild;
 
-    PostRestClient postRestClient = new PostRestClient(webClient);
+    PostsRestClientService postRestClient = new PostsRestClientService(webClient);
 
     @DisplayName("PostsID로 Post 불러오기 테스트")
     @Test
@@ -69,10 +69,19 @@ public class PostRestClientTest {
     @Test
     void deletePostsTest(){
 
-        Long postsID = 73L;
+        Long postsID = 72L;
 
         Long deleteID = postRestClient.deletePosts(postsID);
 
         Assertions.assertThrows(WebClientResponseException.class, ()-> postRestClient.retrievePostsById(postsID));
+    }
+
+    @DisplayName("PostsID로 Post 삭제하기 실패 테스트")
+    @Test
+    void deletePostsTest_BadRequest(){
+
+        Long postsID = 72L;
+
+        Assertions.assertThrows(WebClientResponseException.class, ()-> postRestClient.deletePosts(postsID));
     }
 }
