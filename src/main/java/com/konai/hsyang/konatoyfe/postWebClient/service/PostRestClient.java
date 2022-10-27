@@ -24,7 +24,7 @@ public class PostRestClient {
 //                .block();
 //    }
 
-    public PostsResponseDto retrievePostsById(int postsID){
+    public PostsResponseDto retrievePostsById(Long postsID){
 
         try {
         return webClient.get().uri(POSTS_BY_ID, postsID)
@@ -41,20 +41,37 @@ public class PostRestClient {
         }
     }
 
-    public Long updatePosts(int postsID, PostsUpdateRequestDto requestDto){
+    public Long updatePosts(Long postsID, PostsUpdateRequestDto requestDto){
 
         try {
             return webClient.post().uri(POSTS_UPDATE_BY_ID, postsID)
-                    .syncBody(requestDto)
+                    .bodyValue(requestDto)
                     .retrieve()
                     .bodyToMono(Long.class)
                     .block();
         } catch (WebClientResponseException e){
             log.error("Error Response Code is {} and the response body is {}", e.getRawStatusCode(), e.getResponseBodyAsString());
-            log.error("WebClientResponseException is addNewEmployee", e);
+            log.error("WebClientResponseException in updatePosts", e);
             throw e;
         } catch (Exception e){
-            log.error("Exception in addNewEmployee", e);
+            log.error("Exception in updatePosts", e);
+            throw e;
+        }
+    }
+
+    public Long deletePosts(Long postsID){
+
+        try {
+            return webClient.post().uri(POSTS_DELETE_BY_ID, postsID)
+                    .retrieve()
+                    .bodyToMono(Long.class)
+                    .block();
+        } catch (WebClientResponseException e){
+            log.error("Error Response Code is {} and the response body is {}", e.getStatusCode(), e.getResponseBodyAsString());
+            log.error("WebClientResponseException in deletePosts", e);
+            throw e;
+        } catch (Exception e){
+            log.error("Exception in deletePosts", e);
             throw e;
         }
     }

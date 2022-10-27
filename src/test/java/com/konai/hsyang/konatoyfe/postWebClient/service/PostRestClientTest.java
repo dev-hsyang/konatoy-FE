@@ -15,7 +15,7 @@ public class PostRestClientTest {
 
     private static final String BASE_URL = "http://localhost:8080";
     private WebClient webClient = WebClient.create(BASE_URL);
-    private WebClient.Builder webClientBuild;
+//    private WebClient.Builder webClientBuild;
 
     PostRestClient postRestClient = new PostRestClient(webClient);
 
@@ -23,7 +23,7 @@ public class PostRestClientTest {
     @Test
     void retrievePostsByIdTest(){
 
-        PostsResponseDto responseDto = postRestClient.retrievePostsById(1);
+        PostsResponseDto responseDto = postRestClient.retrievePostsById(1L);
 
         System.out.println("포스트: " + responseDto);
         System.out.println("포스트 작성자 nickname: " + responseDto.getUser().getNickname());
@@ -37,7 +37,7 @@ public class PostRestClientTest {
     @Test
     void retrievePostsById_NotFoundTest(){
 
-        int postsID = -1;
+        Long postsID = -1L;
 
         Assertions.assertThrows(WebClientResponseException.class, ()-> postRestClient.retrievePostsById(postsID));
     }
@@ -49,10 +49,10 @@ public class PostRestClientTest {
 
         PostsUpdateRequestDto requestDto = new PostsUpdateRequestDto(null, 1L, "수정 테스트 타이틀2", "수정 테스트 본문2", 37, 127);
 
-        Long postsID = postRestClient.updatePosts(75, requestDto);
+        Long postsID = postRestClient.updatePosts(75L, requestDto);
 
-        assertThat(postsID).isEqualTo(75);
-        assertThat(postRestClient.retrievePostsById(75).getContent()).isEqualTo("수정 테스트 본문2");
+        assertThat(postsID).isEqualTo(75L);
+        assertThat(postRestClient.retrievePostsById(75L).getContent()).isEqualTo("수정 테스트 본문2");
     }
 
     @DisplayName("PostsID로 Post 수정하기 실패 테스트")
@@ -62,6 +62,17 @@ public class PostRestClientTest {
 
         PostsUpdateRequestDto requestDto = new PostsUpdateRequestDto(null, null, "수정 테스트 타이틀1", "수정 테스트 본문1", 37, 127);
 
-        Assertions.assertThrows(WebClientResponseException.class, ()-> postRestClient.updatePosts(75, requestDto));
+        Assertions.assertThrows(WebClientResponseException.class, ()-> postRestClient.updatePosts(75L, requestDto));
+    }
+
+    @DisplayName("PostsID로 Post 삭제하기 테스트")
+    @Test
+    void deletePostsTest(){
+
+        Long postsID = 73L;
+
+        Long deleteID = postRestClient.deletePosts(postsID);
+
+        Assertions.assertThrows(WebClientResponseException.class, ()-> postRestClient.retrievePostsById(postsID));
     }
 }
