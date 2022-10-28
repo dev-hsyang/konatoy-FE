@@ -1,0 +1,46 @@
+{{>layout/header}}
+
+<br>
+<br>
+<br>
+<h1>Konai Toy Project</h1>
+<br>
+<div class="col-md-12">
+<!-- 로그인 기능 영역 -->
+    <div class="row">
+        <div class="col-md-6">
+            <a href="/posts/save" role="button" class="btn btn-primary">게시글 등록</a>
+            {{#userName}}
+                Logged in as: <span id="user">{{userName}}</span>
+            <a href="/logout" class="btn btn-info active" role="button">로그아웃</a>
+            {{/userName}}
+            {{^userName}}
+                <a href="/loginForm" class="btn btn-success active" role="button">로그인</a>
+            {{/userName}}
+        </div>
+    </div>
+<br>
+    <!-- 목록 촐력 영역 -->
+    <table class="table table-horizontal table-bordered">
+        <thead class = "thead-string">
+        <tr>
+            <th>Post Number</th>
+            <th>Title</th>
+            <th>Writer</th>
+            <th>Updated</th>
+        </tr>
+        </thead>
+        <tbody id="tbody">
+        {{#posts}}
+            <tr>
+                <td>{{id}}</td>
+                <td><a href="/posts/update/{{id}}">{{title}}</a></td>
+                <td>{{userID}}</td>
+                <td>{{modifieddate}}</td>
+            </tr>
+        {{/posts}}
+        </tbody>
+    </table>
+</div>
+
+{{>layout/footer}}

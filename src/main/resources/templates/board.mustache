@@ -1,0 +1,75 @@
+{{>layout/header}}
+<br><br><br>
+<main role="main">
+    <div class="container">
+        <h1><strong>글 목록</strong></h1>
+        <br>
+        <div class="form-group float-left">
+        <select class="form-select" aria-label="Default select example" id="select-sort">
+            <option>정렬순</option>
+            <option value="date">최신순</option>
+            <option value="hits">조회수순</option>
+            <option value="likes">좋아요순</option>
+        </select>
+        </div>
+    </div>
+    <!-- 목록 촐력 영역 -->
+    <div class="container">
+<!--        <table class="table table-horizontal table-bordered">-->
+        <table class="table table-hover">
+            <thead class = "thead-string">
+            <tr>
+                <th>No </th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>소속</th>
+                <th>조회수</th>
+<!--                <th>좋아요</th>-->
+                <th>날짜</th>
+            </tr>
+            </thead>
+            <tbody id="tbody">
+
+
+            {{#posts}}
+                <tr>
+                    <td style="color: gray">{{id}}.</td>
+                    <td><a href="/posts/view/{{id}}" style="text-decoration: none;color: darkblue;"><strong>{{title}}</strong></a></td>
+                    <td style="color: gray">{{userID}}</td>
+                    <td style="color: gray">{{clubID}}</td>
+                    <td style="color: gray">{{hits}}</td>
+<!--                    <td>{{likes}}</td>-->
+                    <td style="color: gray">{{createdate}}</td>
+                </tr>
+            {{/posts}}
+            </tbody>
+        </table>
+        <div>
+            <a href="/posts/save" role="button" class="btn btn-primary">글쓰기</a>
+            <nav aria-label="Page navigation example" class="w-25 m-auto">
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">4</a></li>
+                    <li class="page-item"><a class="page-link" href="#">5</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</main>
+{{>layout/footer}}
+<script src="/static/js/app/sorts.js"></script>
+<!--<script src="/static/js/app/addHit.js"></script>-->
+</body>
+</html>

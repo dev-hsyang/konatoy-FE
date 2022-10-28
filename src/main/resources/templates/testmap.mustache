@@ -1,0 +1,19 @@
+{{>layout/header}}
+<br><br><br><br><br>
+<div class="container">
+<!--    지도를 담을 영역 만들기    -->
+    <div id="map" style="width: 500px;height: 400px;"></div>
+</div>
+<!--실제 지도를 그리는 자바스크립트 API 불러오기-->
+<script> // 지도를 띄우는 코드 작성
+
+    var container = document.getElementById('map'); // 지도를 담을 영역의 DOM 레퍼런스
+    var options = { // 지도 생성할 때 필요한 기본 옵션
+        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심 좌표
+        level: 3 // 지도의 레벨 (확대, 축소 정도)
+    };
+    var map = new kakao.maps.Map(container, options);
+</script>
+{{>layout/footer}}
+</body>
+</html>

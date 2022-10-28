@@ -1,0 +1,22 @@
+{{>layout/header}}
+<br><br><br>
+<main role="main">
+    <div class="container">
+        <h1>글 목록</h1>
+        <br>
+        <div id="grid"></div>
+        <br>
+        <div>
+        <a href="/posts/save" role="button" class="btn btn-primary">글쓰기</a>
+        </div>
+        <nav aria-label="Page navigation example" id="pagination a">
+            <ul class="pagination justify-content-center py-5" id="pagination"></ul>
+        </nav>
+    </div>
+</main>
+{{>layout/footer}}
+<script src="https://uicdn.toast.com/grid/latest/tui-grid.js"></script>
+<script src="/static/js/app/pagingV2.js"></script>
+<script src="/static/js/app/boardV3.js"></script>
+</body>
+</html>

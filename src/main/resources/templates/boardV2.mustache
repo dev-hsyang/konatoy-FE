@@ -1,0 +1,75 @@
+{{>layout/header}}
+<br><br><br>
+<main role="main">
+    <div class="container">
+        <h1><strong>글 목록</strong></h1>
+        <br>
+        <div class="form-group float-left">
+            <select class="form-select" aria-label="Default select example" id="select-sort">
+                <option>정렬순</option>
+                <option value="date">최신순</option>
+                <option value="hits">조회수순</option>
+                <option value="likes">좋아요순</option>
+            </select>
+        </div>
+    </div>
+    <br>
+    <div class="container">
+        <table class="table table-hover">
+            <thead class="thead-string">
+            <tr>
+                <th>No</th>
+                <th>제 목</th>
+                <th>작 성 자</th>
+                <th>소 속</th>
+                <th>조 회 수</th>
+                <th>날 짜</th>
+            </tr>
+            </thead>
+            <tbody id="tbody">
+            {{#posts}}
+                <tr>
+                    <td style="color: gray" id="id">{{id}}.</td>
+                    <td><a href="/posts/view/{{id}}" style="text-decoration: none;color: darkblue;" id="title"><strong>{{title}}</strong></a></td>
+                    <td style="color: gray" id="userID">{{userID}}</td>
+                    <td style="color: gray" id="clubID">{{clubID}}</td>
+                    <td style="color: gray" id="hits">{{hits}}</td>
+                    <td style="color: gray" id="createdate">{{createdate}}</td>
+                </tr>
+            {{/posts}}
+            {{^posts}}
+                <td colspan="6" class="order-last">조회 결과가 없습니다.</td>
+            {{/posts}}
+            </tbody>
+        </table>
+        <div>
+            <a href="/posts/save" role="button" class="btn btn-primary">글쓰기</a>
+        </div>
+        <nav aria-label="Page navigat4ion example">
+            <ul class="pagination justify-content-center py-5">
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="/boardV2?page=0"id="page1">1</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="/boardV2?page=1" id="/board">2</a></li>
+                <li class="page-item"><a class="page-link" href="#" id="/boardV2?page=2">3</a></li>
+                <li class="page-item"><a class="page-link" href="#" id="/boardV2?page=3">4</a></li>
+                <li class="page-item"><a class="page-link" href="#" id="/boardV2?page=4">5</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</main>
+{{>layout/footer}}
+<script src="https://uicdn.toast.com/grid/latest/tui-grid.js"></script>
+<script src="/static/js/app/boardV2.js"></script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+{{>layout/header}}
+<br><br>
+<main role="main">
+    <div class="container">
+        <h1><strong>게시글</strong></h1>
+        <br>
+        <form>
+            <input type="hidden" class="form-control" id="postID" value="{{post.postID}}" readonly>
+            <div class="form-group">
+                <label for="id">글 제목 </label>
+                <input type="text" class="form-control" id="id" value="{{post.title}}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="id">작성자 </label>
+                <input type="text" class="form-control" value="{{post.user.nickname}}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="time1">작성 시간 </label>
+                <input type="text" class="form-control" value="{{post.createdate}}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="time2">수정 시간 </label>
+                <input type="text" class="form-control" value="{{post.modifieddate}}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="time2">조회수 </label>
+                <input type="text" class="form-control" value="{{post.hits}}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="club">소속 </label>
+                <input type="text" class="form-control" value="{{post.club}}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="content">본문 </label>
+                <textarea class="form-control" id="content" readonly>{{post.content}}</textarea>
+            </div>
+            <a href="javascript:window.history.back();" role="button" class="btn btn-secondary">뒤로</a>
+            <a href="/posts/update/{{post.postID}}" role="button" class="btn btn-primary">수정</a>
+            <button type="button" class="btn btn-danger" id="btn-delete">삭제</button>
+        </form>
+    </div>
+</main>
+{{>layout/footer}}
+<script src="/static/js/app/delete.js"></script>
+</body>
+</html>

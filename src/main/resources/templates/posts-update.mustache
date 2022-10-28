@@ -1,0 +1,63 @@
+{{>layout/header}}
+<br>
+<br>
+<main role="main">
+    <div class="container">
+        <div class="col-md-10">
+            <div class="col-md-50">
+                <h1><strong>게시물 수정하기</strong></h1>
+                <br>
+                <form>
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" id="id" value="{{post.postID}}" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="title">게시물 제목</label>
+                        <input type="text" class="form-control" id="title" value="{{post.title}}">
+                    </div>
+                    <label for="location">위치정보</label>
+                    <input type="text" id="latitude" value="{{location.latitude}}" hidden>
+                    <input type="text" id="longtitude" value="{{location.longtitude}}" hidden>
+                    <input type="text" id="locationID" value="{{location.locationID}}" hidden>
+                    <div class="map_wrap" class="bg_white">
+                        <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+                        <div class="hAddr">
+                            <span class="title">지도중심기준 행정동 주소정보</span>
+                            <span id="centerAddr"></span>
+                        </div>
+                        <div id="menu_wrap" class="bg_white">
+                            <div class="option">
+                                <div>
+                                    <form>
+                                        키워드: <input type="text" value="아주대학교" id="keyword" size="15">
+                                        <button type="button" onclick="searchPlaces();">검색하기</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <ul id="placesList"></ul>
+                            <div id="pagination"></div>
+                        </div>
+                    </div>
+                    <textarea class="form-control" id="content" hidden>{{post.content}}</textarea>
+                    <label for="content">본문</label>
+                    <div class="form-group" id="editor"></div>
+                </form>
+                <a href="javascript:window.history.back();" type="button" class="btn btn-secondary">취소</a>
+                <button type="button" class="btn btn-primary" id="btn-update">수정</button>
+                <br><br>
+                {{#filelist}}
+                <div class="file_list card-header">
+                    <a style="float:left" href="/file/download/{{fileID}}"> {{orgFileName}} {{fileSize}}KB</a>&nbsp;
+                    <a type="button" id="btn-deleteFile-{{fileID}}" class="bi bi-x-square" onclick="main.deleteFile({{fileID}})"></a>
+                </div>
+                {{/filelist}}
+            </div>
+        </div>
+    </div>
+</main>
+{{>layout/footer}}
+<script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+<script src="/static/js/app/updateMap.js"></script>
+<script src="/static/js/app/updatePosts.js"></script>
+</body>
+</html>

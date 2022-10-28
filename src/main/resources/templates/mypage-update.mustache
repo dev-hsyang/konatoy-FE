@@ -1,0 +1,57 @@
+{{>layout/header}}
+{{>layout/mypage-sidebar}}
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2 m-lg-3"><strong>개인정보 수정하기</strong></h1>
+    </div>
+    <form name="modify">
+        <input type="hidden" class="form-control" id="id" value="{{user.userID}}" readonly>
+        <div class="form-group">
+            <label for="username">로그인 ID</label>
+            <input type="text" class="form-control" id="username" value="{{user.username}}" readonly>
+        </div>
+        <div class="form-group">
+            <label for="nickname">닉네임 변경</label>
+            <div class="form-group">
+                <input type="password" class="form-control rounded-3" id="oldPassword1" placeholder="현재 비밀번호">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="nickname" value="{{user.nickname}}">
+                <font id="checkNick" size="2"></font>
+            </div>
+            <div class="float-lg-right">
+                <button type="button" class="btn btn-primary " id="btn-updateNick">수정하기</button>
+            </div>
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="userPW">비밀번호 변경</label>
+            <div class="form-group">
+                <input type="password" class="form-control rounded-3" id="oldPassword2" placeholder="현재 비밀번호">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control rounded-3" id="password" placeholder="비밀번호 변경">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control rounded-3" id="password2" placeholder="비밀번호 변경 확인">
+            </div>
+            <div class="float-lg-right">
+                <button type="button" class="btn btn-primary " id="btn-updatePassword">수정하기</button>
+            </div>
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="club">소속 동아리</label>
+            <input type="text" class="form-control" id="club" value="{{user.club.clubname}}" readonly>
+        </div>
+        <div class="form-group">
+            <label for="clubinfo">동아리 정보</label>
+            <textarea class="form-control" id="clubinfo" readonly>{{user.club.clubinfo}}</textarea>
+        </div>
+    </form>
+</main>
+{{>layout/footer}}
+<script src="/static/js/app/join.js"></script>
+<script src="/static/js/app/updateUser.js"></script>
+</body>
+</html>

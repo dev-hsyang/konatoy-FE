@@ -1,0 +1,52 @@
+{{>layout/header}}
+{{>layout/mypage-sidebar}}
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2 m-lg-3"><strong>안녕하세요, {{nickname}}</strong></h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="btn-group me-2">
+                <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+            </div>
+            <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+                <span data-feather="calendar"></span>
+                This week
+            </button>
+        </div>
+    </div>
+    <table class="table table-horizontal table-bordered">
+        <h3><strong>내가 쓴 댓글</strong></h3>
+        <br>
+        <div class="card" id="comment-list">
+            <div class="card-header bi bi-chat-dots">
+                {{userComments.size}} Comments
+            </div>
+            <ul class="list-group-flush">
+                {{#userComments}}
+                    <li class="list-group-item">
+                        <span>
+                            <span style="font-size: small">{{createdate}}</span>
+                        </span>
+<!--                            <a type="button" data-toggle="collapse" data-target=".multi-collapse-{{commentsID}}" class="bi bi-pencil-square"></a>-->
+                            <a type="button" onclick="main.deleteComment({{commentsID}})" class="bi bi-x-square"></a>
+                        <div type="button" onclick="main.clickComment({{commentsID}})">{{content}}</div>
+<!--                        <form class="collapse multi-collapse-{{commentsID}}">-->
+<!--                            <div class="form-group">-->
+<!--                                <textarea class="form-control" id="content-update-{{commentsID}}" rows="3">{{content}}</textarea>-->
+<!--                            </div>-->
+<!--                            <button type="button" onclick="main.updateComment({{commentsID}})" class="btn btn-outline-primary bi bi-pencil-square"> 수정</button>-->
+<!--                        </form>-->
+                    </li>
+                {{/userComments}}
+            </ul>
+        </div>
+    </table>
+</main>
+</div>
+</div>
+</div>
+
+{{>layout/footer}}
+<script src="/static/js/app/comments.js"></script>
+</body>
+</html>

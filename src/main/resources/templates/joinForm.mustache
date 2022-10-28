@@ -1,0 +1,57 @@
+{{>layout/header}}
+<div class="b-example-divider"></div>
+<div class="modal modal-signin position-static d-block bg-secondary py-5" tabindex="-1" role="dialog" id="modalSignin">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content rounded-4 shadow">
+            <div class="modal-header p-5 pb-4 border-bottom-0">
+                <!-- <h5 class="modal-title">Modal title</h5> -->
+                <h2 class="fw-bold mb-0">회원가입</h2>
+
+            </div>
+
+            <div class="modal-body p-5 pt-0">
+                <form name="join">
+                    <label for="username" style="color:gray">Username</label>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control rounded-3" id="username" placeholder="Username">
+                        <font id = "checkId" size="2"></font>
+                    </div>
+                    <label for="password" style="color:gray">Password</label>
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control rounded-3" id="password" placeholder="Password">
+                    </div>
+                    <label for="password2" style="color:gray">Password Check</label>
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control rounded-3" id="password2" placeholder="Password Check">
+                    </div>
+                    <label for="nickname" style="color:gray">Nickname</label>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control rounded-3" id="nickname" placeholder="Nickname">
+                        <font id = "checkNick" size="2"></font>
+                    </div>
+                    <!----------selectClub----------->
+                    <label for="select-club" style="color:gray">Club</label>
+                    <div class="form-floating mb-3">
+                        <select class="form-select" aria-label="Default select example" id="select-club">
+                            <option selected>동아리를 선택하세요</option>
+                            <option value="c1">오케스트라</option>
+                            <option value="c2">커넥트</option>
+                            <option value="c3">마스터피스</option>
+                            <option value="c4">두잇</option>
+                            <option value="c5">벗</option>
+                            <option value="c6">녹두벌</option>
+                        </select>
+                    </div>
+                    <!----------selectClub----------->
+                    <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="button" id="btn-signUp">가입하기</button>
+                    <small class="text-muted">By clicking Sign up, you agree to the terms of use.</small>
+                    <hr class="my-4">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{{>layout/footer}}
+<script src="/static/js/app/join.js"></script>
+</body>
+</html>
