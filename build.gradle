@@ -15,7 +15,6 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter'
-	implementation 'org.springframework.boot:spring-boot-starter-mustache'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-web-services'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
@@ -41,6 +40,9 @@ dependencies {
 
 	// spring security
 	implementation 'org.springframework.boot:spring-boot-starter-security'
+
+	// template engine
+	implementation 'org.springframework.boot:spring-boot-starter-mustache'
 
 }
 
