@@ -1,5 +1,6 @@
 package com.konai.hsyang.konatoyfe.postWebClient.service;
 
+import com.konai.hsyang.konatoyfe.loginWebClient.dto.User;
 import com.konai.hsyang.konatoyfe.postWebClient.dto.PostsImageResponseDto;
 import com.konai.hsyang.konatoyfe.postWebClient.dto.PostsResponseDto;
 import com.konai.hsyang.konatoyfe.postWebClient.dto.PostsUpdateRequestDto;
@@ -9,7 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
 
-import static com.konai.hsyang.konatoyfe.postWebClient.constant.UriConstant.*;
+import static com.konai.hsyang.konatoyfe.postWebClient.constant.PostsUriConstant.*;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -97,6 +98,23 @@ public class PostsRestClientService {
             throw e;
         }
 
+    }
+
+    public void updateHits(Long id){
+
+        try {
+             webClient.get().uri(POSTS_UPDATE_HITS, id)
+                     .retrieve()
+                     .bodyToMono(Long.class)
+                     .block();
+        } catch (WebClientResponseException e){
+            log.error("Error Response Code is {} and the reponse body is {}", e.getStatusCode(), e.getResponseBodyAsString());
+            log.error("WebClientResponseException in updateHits", e);
+            throw e;
+        } catch (Exception e){
+            log.error("Exception id updateHits", e);
+            throw e;
+        }
     }
 
     // Page 받아오기

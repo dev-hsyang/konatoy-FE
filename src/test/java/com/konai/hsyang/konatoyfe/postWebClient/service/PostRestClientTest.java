@@ -1,5 +1,6 @@
 package com.konai.hsyang.konatoyfe.postWebClient.service;
 
+import com.konai.hsyang.konatoyfe.loginWebClient.dto.User;
 import com.konai.hsyang.konatoyfe.postWebClient.dto.PostsResponseDto;
 import com.konai.hsyang.konatoyfe.postWebClient.dto.PostsUpdateRequestDto;
 import org.junit.jupiter.api.Assertions;

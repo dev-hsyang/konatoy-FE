@@ -1,4 +1,4 @@
-package com.konai.hsyang.konatoyfe.loginWebClient.domain;
+package com.konai.hsyang.konatoyfe.loginWebClient.dto;
 
 import lombok.Builder;
 import lombok.Getter;

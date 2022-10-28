@@ -1,6 +1,6 @@
 package com.konai.hsyang.konatoyfe.postWebClient.dto;
 
-import com.konai.hsyang.konatoyfe.loginWebClient.domain.User;
+import com.konai.hsyang.konatoyfe.loginWebClient.dto.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
