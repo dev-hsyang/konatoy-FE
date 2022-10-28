@@ -1,4 +1,4 @@
-package com.konai.hsyang.konatoyfe.indexWebClient.config;
+package com.konai.hsyang.konatoyfe.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
