@@ -2,6 +2,7 @@ package com.konai.hsyang.konatoyfe.postWebClient.controller;
 
 import com.konai.hsyang.konatoyfe.commentsWebClient.service.CommentsRestClientService;
 import com.konai.hsyang.konatoyfe.config.auth.PrincipalDetails;
+import com.konai.hsyang.konatoyfe.locationWebClient.service.LocationRestClientService;
 import com.konai.hsyang.konatoyfe.postWebClient.dto.PostsResponseDto;
 import com.konai.hsyang.konatoyfe.postWebClient.service.PostsRestClientService;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +18,7 @@ public class PostsWebController {
 
     private final PostsRestClientService postsRestClientService;
     private final CommentsRestClientService commentsRestClientService;
+    private final LocationRestClientService locationRestClientService;
 
     @GetMapping("/posts/save")
     public String savePost(){
@@ -32,7 +34,7 @@ public class PostsWebController {
         model.addAttribute("post", responseDto);
         model.addAttribute("author", postsRestClientService.isPostAuthor(principalDetails.getId(), responseDto));
         model.addAttribute("comments", commentsRestClientService.getCommentsList(principalDetails.getNickname(), id));
-        model.addAttribute("location");
+        model.addAttribute("location", locationRestClientService.findByID(responseDto.getLocation().getLocationID()));
         model.addAttribute("filelist");
         return "posts-view";
     }
