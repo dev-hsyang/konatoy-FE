@@ -1,6 +1,5 @@
 package com.konai.hsyang.konatoyfe.postWebClient.service;
 
-import com.konai.hsyang.konatoyfe.loginWebClient.dto.User;
 import com.konai.hsyang.konatoyfe.postWebClient.dto.PostsImageResponseDto;
 import com.konai.hsyang.konatoyfe.postWebClient.dto.PostsResponseDto;
 import com.konai.hsyang.konatoyfe.postWebClient.dto.PostsUpdateRequestDto;
@@ -11,7 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
 
-import static com.konai.hsyang.konatoyfe.postWebClient.constant.PostsUriConstant.*;
+import static com.konai.hsyang.konatoyfe.postWebClient.constant.PostsUri.*;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -32,7 +31,7 @@ public class PostsRestClientService {
     public PostsResponseDto retrievePostsById(Long postsID){
 
         try {
-        return webClient.get().uri(POSTS_BY_ID, postsID)
+            return webClient.get().uri(POSTS_BY_ID, postsID)
                 .retrieve()
                 .bodyToMono(PostsResponseDto.class)
                 .block();

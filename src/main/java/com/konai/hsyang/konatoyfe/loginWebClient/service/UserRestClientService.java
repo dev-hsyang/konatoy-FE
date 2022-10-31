@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
 
-import static com.konai.hsyang.konatoyfe.loginWebClient.constant.UserUriConstant.USER_FIND_BY_ID;
+import static com.konai.hsyang.konatoyfe.loginWebClient.constant.UserUri.USER_FIND_BY_ID;
 
 @Slf4j
 @RequiredArgsConstructor
