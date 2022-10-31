@@ -6,6 +6,7 @@ import com.konai.hsyang.konatoyfe.postWebClient.dto.PostsResponseDto;
 import com.konai.hsyang.konatoyfe.postWebClient.dto.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
@@ -14,6 +15,7 @@ import static com.konai.hsyang.konatoyfe.postWebClient.constant.PostsUriConstant
 
 @Slf4j
 @RequiredArgsConstructor
+@Service
 public class PostsRestClientService {
 
     private final WebClient webClient;
@@ -108,7 +110,7 @@ public class PostsRestClientService {
                      .bodyToMono(Long.class)
                      .block();
         } catch (WebClientResponseException e){
-            log.error("Error Response Code is {} and the reponse body is {}", e.getStatusCode(), e.getResponseBodyAsString());
+            log.error("Error Response Code is {} and the response body is {}", e.getStatusCode(), e.getResponseBodyAsString());
             log.error("WebClientResponseException in updateHits", e);
             throw e;
         } catch (Exception e){
@@ -120,4 +122,20 @@ public class PostsRestClientService {
     // Page 받아오기
     // @AuthenticationPrincipal parameter 해결하기
 
+    public PostsResponseDto postsResponseDtoFindById(Long id){
+
+        try{
+            return webClient.get().uri(POSTS_RESPONSEDTO_ID, id)
+                    .retrieve()
+                    .bodyToMono(PostsResponseDto.class)
+                    .block();
+        } catch (WebClientResponseException e){
+            log.error("Error Response Code is {} and the response body is {}", e.getStatusCode(), e.getResponseBodyAsString());
+            log.error("WebClientResponseException in postsResponseDtoFindById", e);
+            throw e;
+        } catch (Exception e){
+            log.error("Exception id postsResponseDtoFindById", e);
+            throw e;
+        }
+    }
 }

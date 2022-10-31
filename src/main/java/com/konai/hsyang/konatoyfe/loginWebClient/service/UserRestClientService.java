@@ -3,6 +3,7 @@ package com.konai.hsyang.konatoyfe.loginWebClient.service;
 import com.konai.hsyang.konatoyfe.loginWebClient.dto.User;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
 
@@ -10,6 +11,7 @@ import static com.konai.hsyang.konatoyfe.loginWebClient.constant.UserUriConstant
 
 @Slf4j
 @RequiredArgsConstructor
+@Service
 public class UserRestClientService {
 
     private final WebClient webClient;
