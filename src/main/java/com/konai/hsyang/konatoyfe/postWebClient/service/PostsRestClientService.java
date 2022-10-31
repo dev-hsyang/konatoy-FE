@@ -99,7 +99,6 @@ public class PostsRestClientService {
             log.error("Exception id saveImage", e);
             throw e;
         }
-
     }
 
     public void updateHits(Long id){
@@ -135,6 +134,24 @@ public class PostsRestClientService {
             throw e;
         } catch (Exception e){
             log.error("Exception id postsResponseDtoFindById", e);
+            throw e;
+        }
+    }
+
+    public Boolean isPostAuthor(Long id, PostsResponseDto responseDto){
+
+        try {
+            return webClient.post().uri(POSTS_IS_AUTHOR, id)
+                    .bodyValue(responseDto)
+                    .retrieve()
+                    .bodyToMono(Boolean.class)
+                    .block();
+        } catch (WebClientResponseException e){
+            log.error("Error Response Code is {} and the response body is {}", e.getStatusCode(), e.getResponseBodyAsString());
+            log.error("WebClientResponseException in isPostAuthor", e);
+            throw e;
+        } catch (Exception e){
+            log.error("Exception id isPostAuthor", e);
             throw e;
         }
     }

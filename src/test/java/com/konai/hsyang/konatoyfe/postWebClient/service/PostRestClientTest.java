@@ -48,12 +48,12 @@ public class PostRestClientTest {
     @Test
     void updatePostsTest(){
 
-        PostsUpdateRequestDto requestDto = new PostsUpdateRequestDto(null, 1L, "수정 테스트 타이틀2", "수정 테스트 본문2", 37, 127);
+        PostsUpdateRequestDto requestDto = new PostsUpdateRequestDto(null, 1L, "수정 테스트 타이틀3", "수정 테스트 본문3", 37, 127);
 
         Long postsID = postRestClient.updatePosts(75L, requestDto);
 
         assertThat(postsID).isEqualTo(75L);
-        assertThat(postRestClient.retrievePostsById(75L).getContent()).isEqualTo("수정 테스트 본문2");
+        assertThat(postRestClient.retrievePostsById(75L).getContent()).isEqualTo("수정 테스트 본문3");
     }
 
     @DisplayName("PostsID로 Post 수정하기 실패 테스트")
