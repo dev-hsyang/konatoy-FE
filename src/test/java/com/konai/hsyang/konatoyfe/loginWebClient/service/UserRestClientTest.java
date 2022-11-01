@@ -23,4 +23,15 @@ public class UserRestClientTest {
 
         assertThat(testuser.getUsername()).isEqualTo(username);
     }
+
+    @DisplayName("Username 중복 확인 테스트")
+    @Test
+    void validateUsernameTest(){
+
+        String username = "didgsutmd3";
+
+        int validation = userRestClientService.validateUsername(username);
+
+        assertThat(validation).isEqualTo(1);
+    }
 }

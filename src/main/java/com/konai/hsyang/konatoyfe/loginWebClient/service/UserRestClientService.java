@@ -34,22 +34,22 @@ public class UserRestClientService {
         }
     }
 
-    public User findById(Long userID){
-
-        try {
-            return webClient.get().uri(USER_FIND_BY_ID, userID)
-                    .retrieve()
-                    .bodyToMono(User.class)
-                    .block();
-        }  catch (WebClientResponseException e){
-            log.error("Error Response Code is {} and the response body is {}", e.getStatusCode(), e.getResponseBodyAsString());
-            log.error("WebClientResponseException in saveImage", e);
-            throw e;
-        } catch (Exception e){
-            log.error("Exception id saveImage", e);
-            throw e;
-        }
-    }
+//    public User findById(Long userID){
+//
+//        try {
+//            return webClient.get().uri(USER_FIND_BY_ID, userID)
+//                    .retrieve()
+//                    .bodyToMono(User.class)
+//                    .block();
+//        }  catch (WebClientResponseException e){
+//            log.error("Error Response Code is {} and the response body is {}", e.getStatusCode(), e.getResponseBodyAsString());
+//            log.error("WebClientResponseException in saveImage", e);
+//            throw e;
+//        } catch (Exception e){
+//            log.error("Exception id saveImage", e);
+//            throw e;
+//        }
+//    }
 
     public Long join(UserJoinRequestDto requestDto){
 

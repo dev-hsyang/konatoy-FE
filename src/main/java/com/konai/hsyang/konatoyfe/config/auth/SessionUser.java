@@ -5,8 +5,10 @@ import com.konai.hsyang.konatoyfe.loginWebClient.dto.User;
 import lombok.Getter;
 import org.springframework.security.core.SpringSecurityCoreVersion;
 
+import java.io.Serializable;
+
 @Getter
-public class SessionUser {
+public class SessionUser implements Serializable {
 
     private static final long serialVersionUID = SpringSecurityCoreVersion.SERIAL_VERSION_UID;
     private Long id;
