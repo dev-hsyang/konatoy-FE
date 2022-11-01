@@ -1,4 +1,4 @@
-package com.konai.hsyang.konatoyfe.locationWebClient.dto;
+package com.konai.hsyang.konatoyfe.locationWebClient.domain;
 
 import lombok.Getter;
 

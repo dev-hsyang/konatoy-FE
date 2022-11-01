@@ -2,8 +2,8 @@ package com.konai.hsyang.konatoyfe.postWebClient.dto;
 
 import com.konai.hsyang.konatoyfe.commentsWebClient.dto.CommentsResponseDto;
 import com.konai.hsyang.konatoyfe.fileWebClient.dto.FileResponseDto;
-import com.konai.hsyang.konatoyfe.locationWebClient.dto.Location;
-import com.konai.hsyang.konatoyfe.loginWebClient.dto.User;
+import com.konai.hsyang.konatoyfe.locationWebClient.domain.Location;
+import com.konai.hsyang.konatoyfe.loginWebClient.domain.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;

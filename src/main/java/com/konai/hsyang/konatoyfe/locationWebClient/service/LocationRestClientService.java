@@ -1,6 +1,6 @@
 package com.konai.hsyang.konatoyfe.locationWebClient.service;
 
-import com.konai.hsyang.konatoyfe.locationWebClient.dto.Location;
+import com.konai.hsyang.konatoyfe.locationWebClient.domain.Location;
 import com.konai.hsyang.konatoyfe.locationWebClient.dto.LocationResponseDto;
 import com.konai.hsyang.konatoyfe.locationWebClient.dto.LocationSaveRequestDto;
 import lombok.RequiredArgsConstructor;

@@ -1,8 +1,12 @@
 package com.konai.hsyang.konatoyfe.commentsWebClient.service;
 
+import com.konai.hsyang.konatoyfe.commentsWebClient.constants.CommentsUri;
 import com.konai.hsyang.konatoyfe.commentsWebClient.dto.CommentsResponseDto;
+import com.konai.hsyang.konatoyfe.commentsWebClient.dto.CommentsSaveRequestDto;
+import com.konai.hsyang.konatoyfe.commentsWebClient.dto.CommentsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
@@ -39,4 +43,79 @@ public class CommentsRestClientService {
             throw e;
         }
     }
+
+    public ResponseEntity<?> saveComment(String username, Long postID, CommentsSaveRequestDto requestDto){
+
+        try {
+            return webClient.post().uri(uriBuilder -> uriBuilder
+                        .path(COMMENTS_SAVE)
+                        .queryParam("username", username)
+                        .queryParam("postID", postID)
+                        .build())
+                    .bodyValue(requestDto)
+                    .retrieve()
+                    .toEntity(String.class)
+                    .block();
+        } catch (WebClientResponseException e){
+            log.error("Error Response Code is {} and the response body is {}", e.getStatusCode(), e.getResponseBodyAsString());
+            log.error("WebClientResponseException in saveComment", e);
+            throw e;
+        } catch (Exception e){
+            log.error("Exception in saveComment", e);
+            throw e;
+        }
+    }
+
+    public Long deleteComment(Long commentID){
+
+        try {
+            return webClient.post().uri(COMMENTS_DELETE, commentID)
+                    .retrieve()
+                    .bodyToMono(Long.class)
+                    .block();
+        } catch (WebClientResponseException e){
+            log.error("Error Response Code is {} and the response body is {}", e.getStatusCode(), e.getResponseBodyAsString());
+            log.error("WebClientResponseException in deleteComment", e);
+            throw e;
+        } catch (Exception e){
+            log.error("Exception in deleteComment", e);
+            throw e;
+        }
+    }
+
+    public Long updateComment(Long commentID, CommentsUpdateRequestDto requestDto){
+
+        try {
+            return webClient.post().uri(COMMENTS_UPDATE, commentID)
+                    .bodyValue(requestDto)
+                    .retrieve()
+                    .bodyToMono(Long.class)
+                    .block();
+        } catch (WebClientResponseException e){
+            log.error("Error Response Code is {} and the response body is {}", e.getStatusCode(), e.getResponseBodyAsString());
+            log.error("WebClientResponseException in updateComment", e);
+            throw e;
+        } catch (Exception e){
+            log.error("Exception in updateComment", e);
+            throw e;
+        }
+    }
+
+    public Long findPostByCommentID(Long commentID){
+
+        try {
+            return webClient.get().uri(POSTS_BY_COMMENT, commentID)
+                    .retrieve()
+                    .bodyToMono(Long.class)
+                    .block();
+        } catch (WebClientResponseException e){
+            log.error("Error Response Code is {} and the response body is {}", e.getStatusCode(), e.getResponseBodyAsString());
+            log.error("WebClientResponseException in findPostByCommentID", e);
+            throw e;
+        } catch (Exception e){
+            log.error("Exception in findPostByCommentID", e);
+            throw e;
+        }
+    }
+
 }

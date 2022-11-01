@@ -1,6 +1,6 @@
 package com.konai.hsyang.konatoyfe.loginWebClient.service;
 
-import com.konai.hsyang.konatoyfe.loginWebClient.dto.User;
+import com.konai.hsyang.konatoyfe.loginWebClient.domain.User;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.web.reactive.function.client.WebClient;

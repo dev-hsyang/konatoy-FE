@@ -1,7 +1,7 @@
 package com.konai.hsyang.konatoyfe.postWebClient.service;
 
-import com.konai.hsyang.konatoyfe.locationWebClient.dto.Location;
-import com.konai.hsyang.konatoyfe.loginWebClient.dto.User;
+import com.konai.hsyang.konatoyfe.locationWebClient.domain.Location;
+import com.konai.hsyang.konatoyfe.loginWebClient.domain.User;
 import com.konai.hsyang.konatoyfe.postWebClient.dto.PostsResponseDto;
 import com.konai.hsyang.konatoyfe.postWebClient.dto.PostsSaveRequestDto;
 import com.konai.hsyang.konatoyfe.postWebClient.dto.PostsUpdateRequestDto;
@@ -26,7 +26,7 @@ public class PostRestClientTest {
     @Test
     void retrievePostsByIdTest(){
 
-        PostsResponseDto responseDto = postRestClient.postFindById(1L);
+        PostsResponseDto responseDto = postRestClient.postsResponseDtoFindById(1L);
 
         System.out.println("포스트: " + responseDto);
         System.out.println("포스트 작성자 nickname: " + responseDto.getUser().getNickname());
@@ -42,7 +42,7 @@ public class PostRestClientTest {
 
         Long postsID = -1L;
 
-        Assertions.assertThrows(WebClientResponseException.class, ()-> postRestClient.postFindById(postsID));
+        Assertions.assertThrows(WebClientResponseException.class, ()-> postRestClient.postsResponseDtoFindById(postsID));
     }
 
     @DisplayName("PostsID로 Post 수정하기 테스트")
@@ -55,7 +55,7 @@ public class PostRestClientTest {
         Long postsID = postRestClient.updatePosts(75L, requestDto);
 
         assertThat(postsID).isEqualTo(75L);
-        assertThat(postRestClient.postFindById(75L).getContent()).isEqualTo("수정 테스트 본문3");
+        assertThat(postRestClient.postsResponseDtoFindById(75L).getContent()).isEqualTo("수정 테스트 본문3");
     }
 
     @DisplayName("PostsID로 Post 수정하기 실패 테스트")
@@ -76,7 +76,7 @@ public class PostRestClientTest {
 
         Long deleteID = postRestClient.deletePosts(postsID);
 
-        Assertions.assertThrows(WebClientResponseException.class, ()-> postRestClient.postFindById(postsID));
+        Assertions.assertThrows(WebClientResponseException.class, ()-> postRestClient.postsResponseDtoFindById(postsID));
     }
 
     @DisplayName("PostsID로 Post 삭제하기 실패 테스트")
@@ -104,6 +104,6 @@ public class PostRestClientTest {
         Long saveID = postRestClient.save(requestDto, 44L);
 
         assertThat(saveID).isEqualTo(76L);
-        assertThat(postRestClient.postFindById(saveID).getTitle()).isEqualTo("Test title");
+        assertThat(postRestClient.postsResponseDtoFindById(saveID).getTitle()).isEqualTo("Test title");
     }
 }

@@ -1,7 +1,7 @@
 package com.konai.hsyang.konatoyfe.config.auth;
 
-import com.konai.hsyang.konatoyfe.loginWebClient.dto.Role;
-import com.konai.hsyang.konatoyfe.loginWebClient.dto.User;
+import com.konai.hsyang.konatoyfe.loginWebClient.domain.Role;
+import com.konai.hsyang.konatoyfe.loginWebClient.domain.User;
 import lombok.Getter;
 import org.springframework.security.core.SpringSecurityCoreVersion;
 

@@ -1,5 +1,6 @@
 package com.konai.hsyang.konatoyfe.postWebClient.service;
 
+import com.konai.hsyang.konatoyfe.postWebClient.domain.Posts;
 import com.konai.hsyang.konatoyfe.postWebClient.dto.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -43,12 +44,12 @@ public class PostsRestClientService {
                 .block();
     }
 
-    public PostsResponseDto postFindById(Long postsID){
+    public Posts postFindById(Long postsID){
 
         try {
             return webClient.get().uri(POSTS_BY_ID, postsID)
                 .retrieve()
-                .bodyToMono(PostsResponseDto.class)
+                .bodyToMono(Posts.class)
                 .block();
         }catch (WebClientResponseException e){
             log.error("Error Response Code is {} and the response body is {}", e.getRawStatusCode(), e.getResponseBodyAsString());

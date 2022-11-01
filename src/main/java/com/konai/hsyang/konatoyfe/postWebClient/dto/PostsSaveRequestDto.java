@@ -1,7 +1,7 @@
 package com.konai.hsyang.konatoyfe.postWebClient.dto;
 
-import com.konai.hsyang.konatoyfe.locationWebClient.dto.Location;
-import com.konai.hsyang.konatoyfe.loginWebClient.dto.User;
+import com.konai.hsyang.konatoyfe.locationWebClient.domain.Location;
+import com.konai.hsyang.konatoyfe.loginWebClient.domain.User;
 import lombok.Builder;
 import lombok.Getter;
 

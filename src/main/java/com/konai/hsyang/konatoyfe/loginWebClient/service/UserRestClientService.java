@@ -1,6 +1,6 @@
 package com.konai.hsyang.konatoyfe.loginWebClient.service;
 
-import com.konai.hsyang.konatoyfe.loginWebClient.dto.User;
+import com.konai.hsyang.konatoyfe.loginWebClient.domain.User;
 import com.konai.hsyang.konatoyfe.loginWebClient.dto.UserJoinRequestDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
