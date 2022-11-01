@@ -1,6 +1,9 @@
 package com.konai.hsyang.konatoyfe.postWebClient.service;
 
+import com.konai.hsyang.konatoyfe.locationWebClient.dto.Location;
+import com.konai.hsyang.konatoyfe.loginWebClient.dto.User;
 import com.konai.hsyang.konatoyfe.postWebClient.dto.PostsResponseDto;
+import com.konai.hsyang.konatoyfe.postWebClient.dto.PostsSaveRequestDto;
 import com.konai.hsyang.konatoyfe.postWebClient.dto.PostsUpdateRequestDto;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -83,5 +86,24 @@ public class PostRestClientTest {
         Long postsID = 72L;
 
         Assertions.assertThrows(WebClientResponseException.class, ()-> postRestClient.deletePosts(postsID));
+    }
+
+    @DisplayName("Posts 저장 테스트")
+    @Test
+    void saveTest(){
+
+        PostsSaveRequestDto requestDto = PostsSaveRequestDto.builder()
+                .title("Test title")
+                .location(new Location())
+                .author(new User())
+                .content("Test content")
+                .latitude(10D)
+                .longtitude(10D)
+                .build();
+
+        Long saveID = postRestClient.save(requestDto, 44L);
+
+        assertThat(saveID).isEqualTo(76L);
+        assertThat(postRestClient.postFindById(saveID).getTitle()).isEqualTo("Test title");
     }
 }

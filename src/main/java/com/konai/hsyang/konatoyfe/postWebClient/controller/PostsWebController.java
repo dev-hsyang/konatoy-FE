@@ -34,7 +34,7 @@ public class PostsWebController {
         model.addAttribute("post", responseDto);
         model.addAttribute("author", postsRestClientService.isPostAuthor(principalDetails.getId(), responseDto));
         model.addAttribute("comments", commentsRestClientService.getCommentsList(principalDetails.getNickname(), id));
-        model.addAttribute("location", locationRestClientService.findByID(responseDto.getLocation().getLocationID()));
+        model.addAttribute("location", locationRestClientService.dtoFindById(responseDto.getLocation().getLocationID()));
         model.addAttribute("filelist", responseDto.getFiles());
         return "posts-view";
     }
@@ -45,7 +45,7 @@ public class PostsWebController {
         PostsResponseDto responseDto = postsRestClientService.postsResponseDtoFindById(id);
         model.addAttribute("post", responseDto);
         model.addAttribute("filelist", responseDto.getFiles());
-        model.addAttribute("location", locationRestClientService.findByID(responseDto.getLocation().getLocationID()));
+        model.addAttribute("location", locationRestClientService.dtoFindById(responseDto.getLocation().getLocationID()));
         return "posts-update";
     }
 }

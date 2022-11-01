@@ -1,7 +1,8 @@
 package com.konai.hsyang.konatoyfe.locationWebClient.service;
 
-import com.konai.hsyang.konatoyfe.locationWebClient.constant.LocationUri;
+import com.konai.hsyang.konatoyfe.locationWebClient.dto.Location;
 import com.konai.hsyang.konatoyfe.locationWebClient.dto.LocationResponseDto;
+import com.konai.hsyang.konatoyfe.locationWebClient.dto.LocationSaveRequestDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -17,19 +18,54 @@ public class LocationRestClientService {
 
     private final WebClient webClient;
 
-    public LocationResponseDto findByID(Long id){
+    public LocationResponseDto dtoFindById(Long id){
 
         try {
-            return webClient.get().uri(LOCATION_FIND_BY_ID, id)
+            return webClient.get().uri(LOCATION_DTO_FIND_BY_ID, id)
                     .retrieve()
                     .bodyToMono(LocationResponseDto.class)
                     .block();
         } catch (WebClientResponseException e){
-            log.error("Error Response Code is {} and the reponse body is {}", e.getStatusCode(), e.getResponseBodyAsString());
-            log.error("WebClientResponseException in LOCATION_findByID", e);
+            log.error("Error Response Code is {} and the response body is {}", e.getStatusCode(), e.getResponseBodyAsString());
+            log.error("WebClientResponseException in LOCATION_dtoFindById", e);
             throw e;
         } catch (Exception e){
-            log.error("Exception id LOCATION_findByID");
+            log.error("Exception id LOCATION_dtoFindById", e);
+            throw e;
+        }
+    }
+
+    public Location findById(Long id){
+
+        try {
+            return webClient.get().uri(LOCATION_FIND_BY_ID, id)
+                    .retrieve()
+                    .bodyToMono(Location.class)
+                    .block();
+        } catch (WebClientResponseException e){
+            log.error("Error Response Code is {} and the response body is {}", e.getStatusCode(), e.getResponseBodyAsString());
+            log.error("Error ResponseException in LOCATION_findById", e);
+            throw e;
+        } catch (Exception e){
+            log.error("Exception id LOCATION_findById", e);
+            throw e;
+        }
+    }
+
+    public Long save(LocationSaveRequestDto requestDto){
+
+        try {
+            return webClient.post().uri(LOCATION_SAVE)
+                    .bodyValue(requestDto)
+                    .retrieve()
+                    .bodyToMono(Long.class)
+                    .block();
+        } catch (WebClientResponseException e){
+            log.error("Error Response Code is {} and the response body is {}", e.getRawStatusCode(), e.getResponseBodyAsString());
+            log.error("WebClientResponseException in Location-save", e);
+            throw e;
+        } catch (Exception e){
+            log.error("Exception in location-save", e);
             throw e;
         }
     }

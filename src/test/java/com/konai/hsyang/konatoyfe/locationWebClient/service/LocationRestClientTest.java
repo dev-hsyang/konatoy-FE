@@ -19,7 +19,7 @@ public class LocationRestClientTest {
 
         Long locationID = 3L;
 
-        LocationResponseDto responseDto = locationRestClientService.findByID(locationID);
+        LocationResponseDto responseDto = locationRestClientService.dtoFindById(locationID);
 
         assertThat(responseDto.getLatitude()).isEqualTo(40L);
     }
