@@ -44,7 +44,9 @@ public class PostsApiController {
         return postsRestClient.deletePosts(id);
     }
 
-    @PostMapping
+    /******************************** Page 해결해야함 *****************************/
+
+    @PostMapping("/api/posts/image")
     public PostsImageResponseDto image(@RequestParam("image")MultipartFile multipartFile){
 
         return postsRestClient.saveImage(multipartFile);

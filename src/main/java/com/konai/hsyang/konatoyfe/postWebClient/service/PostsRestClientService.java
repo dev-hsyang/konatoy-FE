@@ -95,12 +95,7 @@ public class PostsRestClientService {
         }
     }
 
-    public Page<PostsListResponseDto> page(PageRequestDto requestDto, Pageable pageable){
-
-        try {
-            return webClient.post()
-        }
-    }
+/********************************** Page 해결해야함 ***********************************/
 
     public PostsImageResponseDto saveImage(MultipartFile multipartFile){
 
@@ -138,9 +133,6 @@ public class PostsRestClientService {
             throw e;
         }
     }
-
-    // Page 받아오기
-    // @AuthenticationPrincipal parameter 해결하기
 
     public PostsResponseDto postsResponseDtoFindById(Long id){
 
