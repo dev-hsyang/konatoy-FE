@@ -1,6 +1,5 @@
 package com.konai.hsyang.konatoyfe.postWebClient.service;
 
-import com.konai.hsyang.konatoyfe.loginWebClient.dto.User;
 import com.konai.hsyang.konatoyfe.postWebClient.dto.PostsResponseDto;
 import com.konai.hsyang.konatoyfe.postWebClient.dto.PostsUpdateRequestDto;
 import org.junit.jupiter.api.Assertions;
@@ -24,7 +23,7 @@ public class PostRestClientTest {
     @Test
     void retrievePostsByIdTest(){
 
-        PostsResponseDto responseDto = postRestClient.retrievePostsById(1L);
+        PostsResponseDto responseDto = postRestClient.postFindById(1L);
 
         System.out.println("포스트: " + responseDto);
         System.out.println("포스트 작성자 nickname: " + responseDto.getUser().getNickname());
@@ -40,7 +39,7 @@ public class PostRestClientTest {
 
         Long postsID = -1L;
 
-        Assertions.assertThrows(WebClientResponseException.class, ()-> postRestClient.retrievePostsById(postsID));
+        Assertions.assertThrows(WebClientResponseException.class, ()-> postRestClient.postFindById(postsID));
     }
 
     @DisplayName("PostsID로 Post 수정하기 테스트")
@@ -53,7 +52,7 @@ public class PostRestClientTest {
         Long postsID = postRestClient.updatePosts(75L, requestDto);
 
         assertThat(postsID).isEqualTo(75L);
-        assertThat(postRestClient.retrievePostsById(75L).getContent()).isEqualTo("수정 테스트 본문3");
+        assertThat(postRestClient.postFindById(75L).getContent()).isEqualTo("수정 테스트 본문3");
     }
 
     @DisplayName("PostsID로 Post 수정하기 실패 테스트")
@@ -74,7 +73,7 @@ public class PostRestClientTest {
 
         Long deleteID = postRestClient.deletePosts(postsID);
 
-        Assertions.assertThrows(WebClientResponseException.class, ()-> postRestClient.retrievePostsById(postsID));
+        Assertions.assertThrows(WebClientResponseException.class, ()-> postRestClient.postFindById(postsID));
     }
 
     @DisplayName("PostsID로 Post 삭제하기 실패 테스트")

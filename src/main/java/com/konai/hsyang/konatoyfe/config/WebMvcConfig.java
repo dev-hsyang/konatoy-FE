@@ -36,11 +36,11 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .addResourceLocations("file:/D:/konaToy_images/");
     }
 
-    @Bean
-    public CommonsMultipartResolver multipartResolver(){
-        CommonsMultipartResolver commonsMultipartResolver = new CommonsMultipartResolver();
-        commonsMultipartResolver.setDefaultEncoding("UTF-8"); // 파일 인코딩을 UTF-8로 설정
-        commonsMultipartResolver.setMaxUploadSizePerFile(5 * 1024 * 1024); // 업로드되는 파일 크기를 제한. 바이트 단위 설정이므로 여기서 5MB 제한을 의미
-        return commonsMultipartResolver;
-    }
+//    @Bean
+//    public CommonsMultipartResolver multipartResolver(){
+//        CommonsMultipartResolver commonsMultipartResolver = new CommonsMultipartResolver();
+//        commonsMultipartResolver.setDefaultEncoding("UTF-8"); // 파일 인코딩을 UTF-8로 설정
+//        commonsMultipartResolver.setMaxUploadSizePerFile(5 * 1024 * 1024); // 업로드되는 파일 크기를 제한. 바이트 단위 설정이므로 여기서 5MB 제한을 의미
+//        return commonsMultipartResolver;
+//    }
 }

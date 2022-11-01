@@ -35,7 +35,17 @@ public class PostsWebController {
         model.addAttribute("author", postsRestClientService.isPostAuthor(principalDetails.getId(), responseDto));
         model.addAttribute("comments", commentsRestClientService.getCommentsList(principalDetails.getNickname(), id));
         model.addAttribute("location", locationRestClientService.findByID(responseDto.getLocation().getLocationID()));
-        model.addAttribute("filelist");
+        model.addAttribute("filelist", responseDto.getFiles());
         return "posts-view";
+    }
+
+    @GetMapping("/posts/update/{id}")
+    public String updatePost(@PathVariable Long id, Model model){
+
+        PostsResponseDto responseDto = postsRestClientService.postsResponseDtoFindById(id);
+        model.addAttribute("post", responseDto);
+        model.addAttribute("filelist", responseDto.getFiles());
+        model.addAttribute("location", locationRestClientService.findByID(responseDto.getLocation().getLocationID()));
+        return "posts-update";
     }
 }

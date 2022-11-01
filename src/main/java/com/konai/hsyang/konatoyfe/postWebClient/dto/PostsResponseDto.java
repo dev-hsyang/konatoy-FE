@@ -1,6 +1,7 @@
 package com.konai.hsyang.konatoyfe.postWebClient.dto;
 
 import com.konai.hsyang.konatoyfe.commentsWebClient.dto.CommentsResponseDto;
+import com.konai.hsyang.konatoyfe.fileWebClient.dto.FileResponseDto;
 import com.konai.hsyang.konatoyfe.locationWebClient.dto.Location;
 import com.konai.hsyang.konatoyfe.loginWebClient.dto.User;
 import lombok.AllArgsConstructor;
@@ -22,7 +23,7 @@ public class PostsResponseDto {
     private Location location;
     private String club;
     private List<CommentsResponseDto> comments;
-//    private List<FileResponseDto> files;
+    private List<FileResponseDto> files;
     private String title;
     private String content;
     private Long hits;

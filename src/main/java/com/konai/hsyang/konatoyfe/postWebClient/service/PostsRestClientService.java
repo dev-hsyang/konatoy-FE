@@ -28,7 +28,7 @@ public class PostsRestClientService {
 //                .block();
 //    }
 
-    public PostsResponseDto retrievePostsById(Long postsID){
+    public PostsResponseDto postFindById(Long postsID){
 
         try {
             return webClient.get().uri(POSTS_BY_ID, postsID)
