@@ -5,7 +5,6 @@ import com.konai.hsyang.konatoyfe.postWebClient.dto.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -98,6 +97,27 @@ public class PostsRestClientService {
 
 /********************************** Page 해결해야함 ***********************************/
 
+    public Page page(PageRequestDto requestDto, String param){
+
+        try {
+            return webClient.post().uri(uriBuilder -> uriBuilder
+                    .path(PAGE_REQUEST)
+                    .queryParam("page", param)
+                    .build())
+                    .bodyValue(requestDto)
+                    .retrieve()
+                    .bodyToMono(Page.class)
+                    .block();
+        } catch (WebClientResponseException e){
+            log.error("Error Response Code is {} and the response body is {}", e.getStatusCode(), e.getResponseBodyAsString());
+            log.error("WebClientResponseException in page", e);
+            throw e;
+        } catch (Exception e){
+            log.error("Exception in page", e);
+            throw e;
+        }
+    }
+
     public PostsImageResponseDto saveImage(MultipartFile multipartFile){
 
         try {
@@ -177,6 +197,48 @@ public class PostsRestClientService {
             case "hits" : return this.findAllDescHits();
             case "likes" : return this.findAllDescLikes();
             default : return  null;
+        }
+    }
+
+    public void setPostAuthor(PostsSaveRequestDto requestDto, Long userID){
+
+        try{
+            webClient.post().uri(uriBuilder -> uriBuilder
+                        .path(POSTS_AUTHOR)
+                        .queryParam("userID", userID)
+                        .build())
+                    .bodyValue(requestDto)
+                    .retrieve()
+                    .bodyToMono(Void.class)
+                    .block();
+        } catch (WebClientResponseException e){
+            log.error("Error Response Code is {} and the response body is {}", e.getStatusCode(), e.getResponseBodyAsString());
+            log.error("WebClientResponseException in setPostAuthor", e);
+            throw e;
+        } catch (Exception e){
+            log.error("Exception id setPostAuthor", e);
+            throw e;
+        }
+    }
+
+    public void setLocation(PostsSaveRequestDto requestDto, Long locationID){
+
+        try {
+            webClient.post().uri(uriBuilder -> uriBuilder
+                    .path(POSTS_LOCATION)
+                    .queryParam("locationID", locationID)
+                    .build())
+                    .bodyValue(requestDto)
+                    .retrieve()
+                    .bodyToMono(Void.class)
+                    .block();
+        } catch (WebClientResponseException e){
+            log.error("Error Response Code is {} and the response body is {}", e.getStatusCode(), e.getResponseBodyAsString());
+            log.error("WebClientResponseException in setLocation", e);
+            throw e;
+        } catch (Exception e){
+            log.error("Exception id setLocation", e);
+            throw e;
         }
     }
 

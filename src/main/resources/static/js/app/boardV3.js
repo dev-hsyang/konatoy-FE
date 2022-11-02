@@ -58,6 +58,7 @@ var main = {
         let data = {
 
         }
+
         $.ajax({
             type: "POST",
             url: "/api/posts/paging",
