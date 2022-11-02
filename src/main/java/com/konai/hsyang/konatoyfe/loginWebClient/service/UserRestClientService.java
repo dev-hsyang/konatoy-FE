@@ -2,6 +2,7 @@ package com.konai.hsyang.konatoyfe.loginWebClient.service;
 
 import com.konai.hsyang.konatoyfe.loginWebClient.domain.User;
 import com.konai.hsyang.konatoyfe.loginWebClient.dto.UserJoinRequestDto;
+import com.konai.hsyang.konatoyfe.loginWebClient.dto.UserUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

@@ -20,12 +20,12 @@ public class ClubRestClientService {
 
         try {
              webClient.post().uri(uriBuilder -> uriBuilder
-                    .path(USER_CLUB)
-                    .queryParam("club", club)
-                    .build())
+                        .path(USER_CLUB)
+                        .queryParam("club", club)
+                        .build())
                     .bodyValue(requestDto)
                     .retrieve()
-                    .bodyToMono(Long.class)
+                    .bodyToMono(Void.class)
                     .block();
         } catch (WebClientResponseException e){
             log.error("Error Response Code is {} and the response body is {}", e.getStatusCode(), e.getResponseBodyAsString());
