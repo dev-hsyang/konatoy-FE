@@ -1,5 +1,9 @@
 package com.konai.hsyang.konatoyfe.fileWebClient.dto;
 
+import com.konai.hsyang.konatoyfe.fileWebClient.domain.File;
+import lombok.Getter;
+
+@Getter
 public class FileResponseDto {
 
     private Long fileID;
@@ -8,4 +12,11 @@ public class FileResponseDto {
     private String storePath;
     private int fileSize;
 
+    public FileResponseDto(File entity) {
+        this.fileID = entity.getFileID();
+        this.postID = entity.getPosts().getPostsID();
+        this.storePath = entity.getStorepath();
+        this.orgFileName = entity.getOrgfilename();
+        this.fileSize = Math.round(entity.getFilesize()/1024);
+    }
 }

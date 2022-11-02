@@ -123,7 +123,7 @@ public class PostsRestClientService {
         try {
              webClient.get().uri(POSTS_UPDATE_HITS, id)
                      .retrieve()
-                     .bodyToMono(Long.class)
+                     .bodyToMono(Void.class)
                      .block();
         } catch (WebClientResponseException e){
             log.error("Error Response Code is {} and the response body is {}", e.getStatusCode(), e.getResponseBodyAsString());

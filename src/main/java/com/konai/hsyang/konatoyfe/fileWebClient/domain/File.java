@@ -1,7 +1,9 @@
 package com.konai.hsyang.konatoyfe.fileWebClient.domain;
 
 import com.konai.hsyang.konatoyfe.postWebClient.domain.Posts;
+import lombok.Getter;
 
+@Getter
 public class File {
 
     private Long fileID;
