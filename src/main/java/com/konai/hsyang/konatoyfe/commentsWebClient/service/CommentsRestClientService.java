@@ -44,6 +44,24 @@ public class CommentsRestClientService {
         }
     }
 
+    public List<CommentsResponseDto> findAllByUserId(Long userID){
+
+        try {
+            return webClient.get().uri(COMMENTS_BY_ID, userID)
+                    .retrieve()
+                    .bodyToFlux(CommentsResponseDto.class)
+                    .collectList()
+                    .block();
+        } catch (WebClientResponseException e){
+            log.error("Error Response Code is {} and the response body is {}", e.getStatusCode(), e.getResponseBodyAsString());
+            log.error("WebClientResponseException in comments findAllByUserId", e);
+            throw e;
+        } catch (Exception e){
+            log.error("Exception in comments findAllByUserId", e);
+            throw e;
+        }
+    }
+
     public ResponseEntity<?> saveComment(String username, Long postID, CommentsSaveRequestDto requestDto){
 
         try {
@@ -117,5 +135,7 @@ public class CommentsRestClientService {
             throw e;
         }
     }
+
+
 
 }

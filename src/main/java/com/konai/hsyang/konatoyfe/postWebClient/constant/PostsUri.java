@@ -14,8 +14,10 @@ public class PostsUri {
     public static final String POSTS_ALL_DESC_CURRENT = "/api/v2/posts/current";
     public static final String POSTS_ALL_DESC_HITS = "/api/v2/posts/hits";
     public static final String POSTS_ALL_DESC_LIKE = "/api/v2/posts/likes";
+    public static final String POSTS_ALL_ID = "/api/v2/posts/id/{id}";
     public static final String POSTS_AUTHOR = "/api/v2/posts/author";
     public static final String POSTS_LOCATION = "/api/v2/posts/location";
+
 
 }
 

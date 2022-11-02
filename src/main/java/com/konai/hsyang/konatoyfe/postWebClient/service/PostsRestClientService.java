@@ -269,5 +269,14 @@ public class PostsRestClientService {
                 .block();
     }
 
+    public List<PostsListResponseDto> findAllDescId(Long userID){
+
+        return webClient.get().uri(POSTS_ALL_ID, userID)
+                .retrieve()
+                .bodyToFlux(PostsListResponseDto.class)
+                .collectList()
+                .block();
+    }
+
 
 }

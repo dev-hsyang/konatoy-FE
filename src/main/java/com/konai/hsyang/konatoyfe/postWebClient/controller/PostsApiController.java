@@ -49,7 +49,7 @@ public class PostsApiController {
     }
 
     @PostMapping("/api/posts/paging")
-    public Page<PostsListResponseDto> page(@RequestBody PageRequestDto requestDto, @RequestParam("page") String page){
+    public Page<PostsListResponseDto> page(@RequestBody PageRequestDto requestDto, @RequestParam(required = false, name = "page") String page){
 
         // /api/posts/paging?page=pageindex&size=15&sort=createdate
         return postsRestClient.page(requestDto, page);
