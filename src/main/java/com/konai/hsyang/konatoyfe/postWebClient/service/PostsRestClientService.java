@@ -5,6 +5,7 @@ import com.konai.hsyang.konatoyfe.postWebClient.dto.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -97,7 +98,7 @@ public class PostsRestClientService {
 
 /********************************** Page 해결해야함 ***********************************/
 
-    public Page page(PageRequestDto requestDto, String param){
+    public ResponseEntity<String> page(PageRequestDto requestDto, Long param){
 
         try {
             return webClient.post().uri(uriBuilder -> uriBuilder
@@ -106,7 +107,7 @@ public class PostsRestClientService {
                     .build())
                     .bodyValue(requestDto)
                     .retrieve()
-                    .bodyToMono(Page.class)
+                    .toEntity(String.class)
                     .block();
         } catch (WebClientResponseException e){
             log.error("Error Response Code is {} and the response body is {}", e.getStatusCode(), e.getResponseBodyAsString());

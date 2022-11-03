@@ -1,9 +1,13 @@
 package com.konai.hsyang.konatoyfe.fileWebClient.dto;
 
 import com.konai.hsyang.konatoyfe.fileWebClient.domain.File;
-import lombok.Getter;
+import lombok.*;
 
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Data
 public class FileResponseDto {
 
     private Long fileID;

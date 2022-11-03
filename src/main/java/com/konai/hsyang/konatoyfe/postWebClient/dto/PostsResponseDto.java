@@ -4,10 +4,7 @@ import com.konai.hsyang.konatoyfe.commentsWebClient.dto.CommentsResponseDto;
 import com.konai.hsyang.konatoyfe.fileWebClient.dto.FileResponseDto;
 import com.konai.hsyang.konatoyfe.locationWebClient.domain.Location;
 import com.konai.hsyang.konatoyfe.loginWebClient.domain.User;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -15,6 +12,7 @@ import java.util.List;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Data
 public class PostsResponseDto {
 
@@ -30,6 +28,6 @@ public class PostsResponseDto {
     private Long likes;
     private LocalDateTime createdate;
     private LocalDateTime modifieddate;
-    private String formatCreatedate;
+    private String formatCreateDate;
     private String formatModifiedDate;
 }

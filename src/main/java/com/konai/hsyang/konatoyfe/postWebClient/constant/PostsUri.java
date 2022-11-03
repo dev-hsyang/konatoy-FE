@@ -10,7 +10,7 @@ public class PostsUri {
     public static final String POSTS_UPLOAD_IMAGE = "/api/v2/posts/image";
     public static final String POSTS_UPDATE_HITS = "/api/v2/posts/update/{id}";
     public static final String POSTS_DTO_BY_ID = "/api/v2/posts/dto/{id}";
-    public static final String POSTS_IS_AUTHOR = "/api/v2/posts/{id}";
+    public static final String POSTS_IS_AUTHOR = "/api/v2/posts/author/{id}";
     public static final String POSTS_ALL_DESC_CURRENT = "/api/v2/posts/current";
     public static final String POSTS_ALL_DESC_HITS = "/api/v2/posts/hits";
     public static final String POSTS_ALL_DESC_LIKE = "/api/v2/posts/likes";
