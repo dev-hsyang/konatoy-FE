@@ -18,6 +18,7 @@ public class CommentsApiController {
     @PostMapping("/api/comments/save/{postID}")
     public ResponseEntity<?> saveComment(@PathVariable Long postID, @RequestBody CommentsSaveRequestDto requestDto, @AuthenticationPrincipal PrincipalDetails principalDetails){
 
+
         return ResponseEntity.ok(commentsRestClient.saveComment(principalDetails.getUsername(), postID, requestDto));
     }
 

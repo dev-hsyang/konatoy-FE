@@ -26,7 +26,6 @@ public class PostsApiController {
     @PostMapping(value="/api/posts", consumes = "application/json")
     public Long save(@RequestBody PostsSaveRequestDto requestDto, @AuthenticationPrincipal PrincipalDetails principalDetails){
 
-        System.out.println("POSTS SAVE ================ ");
         postsRestClient.setPostAuthor(requestDto, principalDetails.getId());
         postsRestClient.setLocation(requestDto, locationRestClient.save(new LocationSaveRequestDto(requestDto.getLatitude(), requestDto.getLongtitude())));
         return postsRestClient.save(requestDto, principalDetails.getId());
