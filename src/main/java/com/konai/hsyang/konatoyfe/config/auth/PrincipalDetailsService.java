@@ -1,7 +1,6 @@
 package com.konai.hsyang.konatoyfe.config.auth;
 
-import com.konai.hsyang.konatoyfe.loginWebClient.service.UserRestClientService;
-import com.konai.hsyang.konatoyfe.postWebClient.service.PostsRestClientService;
+import com.konai.hsyang.konatoyfe.login.service.UserRestClientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

@@ -25,14 +25,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     PrincipalDetailsService principalDetailsService;
 
     @Bean
-    public BCryptPasswordEncoder encodePwd(){
+    public BCryptPasswordEncoder encodePwd() {
+
         return new BCryptPasswordEncoder();
     }
 
     @Override
-    public void configure(WebSecurity web) throws Exception{
+    public void configure(WebSecurity web) throws Exception {
         web.ignoring()
-                .antMatchers( "/favicon.ico", "/resources/**", "/error", "/static/**", "/docs/**");
+                .antMatchers("/favicon.ico", "/resources/**", "/error", "/static/**", "/docs/**");
     }
 
     @Override
@@ -46,6 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
