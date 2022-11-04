@@ -17,6 +17,7 @@ public class FileWebController {
     @GetMapping("/file/download/{fileID}")
     public void download(@PathVariable Long fileID, HttpServletResponse response){
 
+        System.out.println("FILE DOWNLOAD WEB CONTROLLER REQUESTED=================================");
         fileService.downloadFile(fileID, response);
     }
 }
